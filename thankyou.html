@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <title>Surat untuk Kamu</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    body {
+      background: #fff6f6;
+      font-family: 'Poppins', sans-serif;
+      text-align: center;
+      padding: 80px 20px;
+      color: #333;
+    }
+    .letter {
+      max-width: 600px;
+      margin: auto;
+      background: white;
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="falling-hearts"></div>
+
+  <div class="letter">
+    <h2>Untuk Kamu yang Paling Spesial 💖</h2>
+    <p style="margin-top: 30px;">Klik sekali surat ini yaa 💖</p>
+    <p style="margin-top: 30px;">
+      Terima kasih sudah ada di hidupku.  <br>
+      Hari ini aku mau kamu tahu,<br>
+      bahwa kamu berarti lebih dari yang bisa aku tuliskan di sini.  <br>
+      Semoga hadiah-hadiah kecil ini bisa bikin kamu senyum yaa,<br>
+      Maaf selama ini aku masih banyak kurangnya bagi kamu,<br>
+      aku tetap berusaha yang terbaik bagi kamu sampai kapan pun.<br>
+      Tapi yang paling penting: aku akan selalu ada untuk kamu.
+    </p>
+    <p style="margin-top: 30px;">Dengan penuh cinta,<br><strong>💌 Diran</strong></p>
+  </div>
+
+ <audio id="bgm" src="assets/audio/sound.mp3" loop></audio>
+
+<script>
+  const url = new URLSearchParams(window.location.search);
+  const audio = document.getElementById("bgm");
+
+  if (url.get("play") === "true") {
+    document.addEventListener("DOMContentLoaded", () => {
+      // Minta gesture user
+      document.body.addEventListener("click", function playOnce() {
+        audio.play();
+        audio.volume = 0;
+        let volume = 0;
+        const fade = setInterval(() => {
+          if (volume < 1) {
+            volume += 0.05;
+            audio.volume = volume;
+          } else {
+            clearInterval(fade);
+          }
+        }, 200);
+        document.body.removeEventListener("click", playOnce); // supaya cuma sekali
+      }, { once: true });
+    });
+  }
+
+   const hearts = document.querySelector('.falling-hearts');
+  for (let i = 0; i < 30; i++) {
+    const span = document.createElement('span');
+    span.style.left = Math.random() * 100 + 'vw';
+    span.style.animationDuration = 2 + Math.random() * 3 + 's';
+    span.style.animationDelay = Math.random() * 5 + 's';
+    hearts.appendChild(span);
+  }
+  
+</script>
+
+</body>
+</html>
